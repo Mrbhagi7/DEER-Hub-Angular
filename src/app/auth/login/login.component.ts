@@ -1,38 +1,21 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  displayFormValues(f: NgForm) {
-    console.log("Email:", f.value.email);
-    console.log("Password:", f.value.password);
+  constructor() { }
+
+  displayFormValues(myForm: NgForm) {
+    console.log("Email:", myForm.value.email);
+    console.log("Password:", myForm.value.password);
   }
-
-  // eid?: number;
-  // ename: string = "";
-  // esalary?: number;
-  // data: any;
-
-  // storeData(f: NgForm) {
-  //   if (f.valid) {
-  //     alert('valid....')
-  //     console.log(f.value)
-  //     console.log(f.valid)
-  //     console.log(f.controls)
-  //     //  this.data=f.value.eid+""+f.value.ename+""+f.value.esalary;
-  //     this.data = f.value;
-  //   } else {
-  //     alert('invalid')
-  //   }
 }
-
-

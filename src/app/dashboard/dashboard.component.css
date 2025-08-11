@@ -1,0 +1,17 @@
+.container-fluid{
+    margin-top: 10px;
+}
+.content {
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: #7fbaf5;
+    color: white;
+    padding: 30px;
+}
+.description {
+    color: black;
+}
+#Cards:hover{
+    transform: scale(1.01);
+    transition: transform 0.3s;
+}

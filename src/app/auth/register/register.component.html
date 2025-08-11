@@ -1,1 +1,49 @@
-<p>register works!</p>
+<!-- Register Component Template -->
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4 col-sm-8">
+            <div class="card feature-card h-100 text-center p-4">
+                <h5 class="card-title">Register</h5>
+                <form #myForm="ngForm" class="text-start">
+                    <div class="form-group mt-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" id="name" name="name" required class="form-control" [(ngModel)]="name"
+                            #name_verify="ngModel">
+                        <div *ngIf="name_verify.touched && name_verify.invalid">
+                            <span *ngIf="name_verify.errors?.['required']" class="e1">Name is Mandatory</span>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" id="email" name="email" required class="form-control"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)]="email" #email_verify="ngModel">
+                        <div *ngIf="email_verify.touched && email_verify.invalid">
+                            <span *ngIf="email_verify.errors?.['required']" class="e1">Email is Mandatory</span>
+                            <span *ngIf="email_verify.errors?.['pattern']" class="e1">Invalid Email Format</span>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" id="password" name="password" required class="form-control" minlength="5"
+                            [(ngModel)]="password" #password_verify="ngModel">
+                        <div *ngIf="password_verify.touched && password_verify.invalid">
+                            <span *ngIf="password_verify.errors?.['required']" class="e1">Password is Mandatory</span>
+                            <span *ngIf="password_verify.errors?.['minlength']" class="e1">Password must be at least 5
+                                characters</span>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="confirmPassword" class="form-label">Confirm Password:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required class="form-control"
+                            [(ngModel)]="confirmPassword" #confirmPassword_verify="ngModel">
+                        <div *ngIf="confirmPassword_verify.touched && confirmPassword_verify.invalid">
+                            <span *ngIf="confirmPassword_verify.errors?.['required']" class="e1">Confirm Password is
+                                Mandatory</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3" [disabled]="myForm.invalid">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,69 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="container flex-grow-1">
+  <!-- Hero Section -->
+  <section class="hero-section mb-4 mt-3">
+    <h1 class="display-5 fw-bold text-glass mb-3">Welcome to DEER Hub</h1>
+    <p class="lead">Your all-in-one portal for employee engagement, resources, and requests.</p>
+  </section>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Deer Hub</title>
-</head>
+  <!-- News Ticker Section -->
+  <section id="news-ticker" class="mb-4">
+    <marquee behavior="scroll" direction="left" scrollamount="4">
+      <span *ngFor="let announcement of announcements" class="news-item">{{ announcement }} &nbsp;</span>
+    </marquee>
+  </section>
 
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;" data-bs-theme="light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Deer Hub</a>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search">
-                <button class="btn btn-primary" type="submit">Search</button>
-                &nbsp;<button class="btn btn-secondary" type="button" routerLink="/login">Login</button>
-            </form>
-        </div>
-    </nav>
-
-
-    <!-- Main Layout with Sidebar -->
-
-    <div class="d-flex">
-
-        <div class="sidebar">
-            <h6>Workspace</h6>
-            <a href="Dashboard" class="nav-link">
-                <div class="title">Dashboard</div>
-                <div class="subtitle">Overview and quick actions</div>
-            </a>
-            <a href="Documents" class="nav-link">
-                <div class="title">Documents</div>
-                <div class="subtitle">SharePoint integration</div>
-            </a>
-            <a href="LeaveRequests" class="nav-link">
-                <div class="title">Leave Requests</div>
-                <div class="subtitle">Time off management</div>
-            </a>
-            <a href="Calendar" class="nav-link">
-                <div class="title">Calendar</div>
-                <div class="subtitle">Event management</div>
-            </a>
-            <hr>
-
-            <h6>Support</h6>
-            <a href="#" class="nav-link">
-                <div class="title">Settings</div>
-            </a>
-            <a href="#" class="nav-link">
-                <div class="title">Help & Support</div>
-            </a>
-        </div>
-
-        <!-- Main Content -->
-        <div class="container-fluid">
-            <div class="content">
-                <h1>Welcome to the Deer Hub</h1>
-                <p class="description">Your central workspace for all your needs.</p>
-            </div>
-        </div>
+  <!-- Feature Cards -->
+  <div class="row g-4 justify-content-center mb-5">
+    <!-- Leave Request Card -->
+    <div class="col-12 col-md-4">
+      <div class="card feature-card h-100 text-center p-4">
+        <div class="card-icon mb-2">📝</div>
+        <h5 class="card-title">Leave Request</h5>
+        <p class="card-text">
+          Submit and track your leave requests easily. Our streamlined workflow ensures
+          transparency and timely approvals for all your time-off needs.
+        </p>
+        <a routerLink="/leave" class="btn btn-primary mt-2">Request Leave</a>
+      </div>
     </div>
 
+    <!-- Login/Register Card -->
+    <div class="col-12 col-md-4">
+      <div class="card feature-card h-100 text-center p-4">
+        <div class="card-icon mb-2">🔐</div>
+        <h5 class="card-title">Login / Register</h5>
+        <p class="card-text">
+          Access your personalized dashboard and features. Secure authentication and role
+          management for every team member.
+        </p>
+        <a routerLink="/login" class="btn btn-primary mt-2">Login / Register</a>
+      </div>
+    </div>
 
-</body>
+    <!-- Document Upload Card (now visible) -->
+    <div class="col-12 col-md-4" id="upload-card">
+      <div class="card feature-card h-100 text-center p-4">
+        <div class="card-icon mb-2">📤</div>
+        <h5 class="card-title">Document Upload</h5>
+        <p class="card-text">
+          Managers can upload important documents for the team. Centralized resource sharing for
+          enhanced collaboration and compliance.
+        </p>
+        <a routerLink="/upload" class="btn btn-primary mt-2">Upload Docs</a>
+      </div>
+    </div>
+  </div>
 
-</html>
+  <!-- Info Sections -->
+  <section class="row g-4 align-items-stretch mb-5">
+    <!-- Why Choose DEER Hub -->
+    <div class="col-12 col-md-6">
+      <div class="glassmorph-card p-4 h-100">
+        <h4 class="fw-bold mb-2">Why Choose DEER Hub?</h4>
+        <ul class="mb-0">
+          <li>Boost employee engagement with interactive tools and real-time updates.</li>
+          <li>Reduce administrative overhead with automated workflows and self-service features.</li>
+          <li>Ensure data security and privacy with robust session-based access control.</li>
+          <li>Future-proof your organization with a platform built for extensibility and integration.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Key Features -->
+    <div class="col-12 col-md-6">
+      <div class="glassmorph-card p-4 h-100">
+        <h4 class="fw-bold mb-2">Key Features</h4>
+        <ul class="mb-0">
+          <li>Modular UI components for rapid development and easy maintenance.</li>
+          <li>Role-based dashboards and personalized notifications.</li>
+          <li>Mobile-first, responsive layouts for on-the-go access.</li>
+          <li>Ready for API and backend integration as your needs grow.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
