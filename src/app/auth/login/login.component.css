@@ -1,0 +1,14 @@
+.e1{
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
+.container{
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: #7fbaf5;
+    color: black;
+    padding: 30px;
+    width: 400px;
+    height: 400px;
+}

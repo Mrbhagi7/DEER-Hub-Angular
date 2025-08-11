@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deer Hub</title>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;" data-bs-theme="light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Deer Hub</a>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search">
+                <button class="btn btn-primary" type="submit">Search</button>
+                &nbsp;<button class="btn btn-secondary" type="button" routerLink="/login">Login</button>
+            </form>
+        </div>
+    </nav>
+
+
+    <!-- Main Layout with Sidebar -->
+
+    <div class="d-flex">
+
+        <div class="sidebar">
+            <h6>Workspace</h6>
+            <a href="Dashboard" class="nav-link">
+                <div class="title">Dashboard</div>
+                <div class="subtitle">Overview and quick actions</div>
+            </a>
+            <a href="Documents" class="nav-link">
+                <div class="title">Documents</div>
+                <div class="subtitle">SharePoint integration</div>
+            </a>
+            <a href="LeaveRequests" class="nav-link">
+                <div class="title">Leave Requests</div>
+                <div class="subtitle">Time off management</div>
+            </a>
+            <a href="Calendar" class="nav-link">
+                <div class="title">Calendar</div>
+                <div class="subtitle">Event management</div>
+            </a>
+            <hr>
+
+            <h6>Support</h6>
+            <a href="#" class="nav-link">
+                <div class="title">Settings</div>
+            </a>
+            <a href="#" class="nav-link">
+                <div class="title">Help & Support</div>
+            </a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="container-fluid">
+            <div class="content">
+                <h1>Welcome to the Deer Hub</h1>
+                <p class="description">Your central workspace for all your needs.</p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

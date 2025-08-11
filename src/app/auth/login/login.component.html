@@ -1,0 +1,59 @@
+<div class="container">
+
+    <form #myForm="ngForm">
+        
+        <div>
+    <label for="email">Email: </label>
+    <input type="text" id="email" name="email" pattern="[a-z0-9]+@[a-z0-9]+\.[a-z]{2,}$" minlength="5" required [(ngModel)]="email" #mail="ngModel" />
+    <div *ngIf="mail.touched && mail.invalid">
+        <span *ngIf="mail.errors?.['required']" class="e1">Email is Mandatory</span>
+        <span *ngIf="mail.errors?.['pattern']" class="e1">Invalid Email Format</span>
+        <span *ngIf="mail.errors?.['minlength']" class="e1">Email must be at least 5 characters</span>
+    </div>
+</div>
+
+<div>
+    <label for="password">Password: </label>
+    <input type="password" id="password" name="password" minlength="5" required [(ngModel)]="password" #code="ngModel" />
+    
+    <div *ngIf="code.touched && code.invalid">
+        <span *ngIf="code.errors?.['required']" class="e1">Password is Mandatory</span>
+        <span *ngIf="code.errors?.['minlength']" class="e1">Password must be at least 5 characters</span>
+    </div>
+</div>
+
+  <input type="submit"
+  value="Login"
+  [disabled]="myForm.invalid"
+  (click)="displayFormValues(myForm)" />
+  
+</form>
+
+</div>
+<!-- 
+<form #myForm="ngForm">
+<label for="eid">EID:</label>
+<input type="text" name="eid" id="eid" required="required" pattern="[0-9]{4}" [(ngModel)]="eid" #id="ngModel"/>
+<br/>
+<div *ngIf="id.touched && id.invalid">
+<span *ngIf="id.errors?.['required']" class="e1">*EID is Mandatory</span>
+<span *ngIf="id.errors?.['pattern']" class="e1">*It Should be 4 Digits</span>
+</div>
+<label for="ename">ENAME:</label>
+<input type="text" name="ename" id="ename" required="required" minlength="5" [(ngModel)]="ename" #name="ngModel">
+<div *ngIf="name.touched && name.invalid">
+<span *ngIf="name.errors?.['required']" class="e1">*Name is Mandatory</span>
+<span *ngIf="name.errors?.['minlength']" class="e1">*Name Must be at least 5 character</span>
+</div>
+ 
+    <label for="esalary">ESALARY:</label>
+<input type="text" name="esalary" id="esalary" required="required" [(ngModel)]="esalary" #sal="ngModel">
+<div *ngIf="sal.touched && sal.invalid">
+<span *ngIf="sal.errors?.['required']" class="e1">*Esalary is Mandatory</span>
+</div>
+ 
+    <input type="submit" value="STORE" (click)="storeData(myForm)"/>
+</form>
+<hr/>
+Data:{{data | json}}
+<hr/> -->
