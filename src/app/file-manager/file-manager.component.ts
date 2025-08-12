@@ -22,6 +22,7 @@ export class FileManagerComponent {
   searchText = '';
   showUploadForm = false;
   selectedType = 'All';
+  selectedFile: File | null = null;
 
   get totalFiles() {
     return this.files.length;
@@ -54,22 +55,33 @@ export class FileManagerComponent {
 
   closeUploadForm() {
     this.showUploadForm = false;
+    this.selectedFile = null;
   }
 
-  onFileUpload(event: any, name: string, description: string) {
-    const file = event.target.files[0];
-    if (file) {
-      const fileURL = URL.createObjectURL(file); // create object URL
-      const newFile: FileData = {
-        name: name || file.name,
-        description,
-        type: file.type || 'Unknown',
-        date: new Date().toISOString().split('T')[0],
-        url: fileURL
-      };
-      this.files.push(newFile);
-      this.showUploadForm = false;
+  // Store selected file without uploading yet
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0] || null;
+  }
+
+  // Upload file only after clicking Upload button
+  submitUpload(name: string, description: string) {
+    if (!this.selectedFile) {
+      alert("Please select a file first.");
+      return;
     }
+
+    const fileURL = URL.createObjectURL(this.selectedFile);
+    const newFile: FileData = {
+      name: name || this.selectedFile.name,
+      description,
+      type: this.selectedFile.type || 'Unknown',
+      date: new Date().toISOString().split('T')[0],
+      url: fileURL
+    };
+
+    this.files.push(newFile);
+    this.selectedFile = null;
+    this.showUploadForm = false;
   }
 
   setFilter(type: string) {

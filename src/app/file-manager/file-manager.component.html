@@ -25,8 +25,6 @@
     <div class="mb-3">
         <button class="btn btn-outline-primary me-2" [class.active]="selectedType === 'All'"
             (click)="setFilter('All')">All</button>
-        <!-- <button class="btn btn-outline-success me-2" [class.active]="selectedType === 'image/png'"
-            (click)="setFilter('image/png')">Images</button> -->
         <button class="btn btn-outline-danger me-2" [class.active]="selectedType === 'application/pdf'"
             (click)="setFilter('application/pdf')">PDFs</button>
         <button class="btn btn-outline-secondary" [class.active]="selectedType === 'text/plain'"
@@ -76,9 +74,10 @@
         <label>Description:</label>
         <input type="text" class="form-control mb-2" #fileDesc>
 
-        <input type="file" class="form-control mb-3" (change)="onFileUpload($event, fileName.value, fileDesc.value)">
+        <input type="file" class="form-control mb-3" (change)="onFileSelected($event)">
+
         <div class="text-end">
-            <button class="btn btn-success me-2">Upload</button>
+            <button class="btn btn-success me-2" (click)="submitUpload(fileName.value, fileDesc.value)">Upload</button>
             <button class="btn btn-secondary" (click)="closeUploadForm()">Cancel</button>
         </div>
     </div>
