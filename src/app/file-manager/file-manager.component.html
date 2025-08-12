@@ -1,4 +1,10 @@
 <div class="container mt-4">
+
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="alert alert-success text-center" role="alert">
+        {{ successMessage }}
+    </div>
+
     <!-- Top Stats Cards -->
     <div class="row text-white">
         <div class="col-md-4 mb-3">
@@ -68,16 +74,28 @@
 <div *ngIf="showUploadForm" class="modal-backdrop">
     <div class="modal-box">
         <h4>Upload File</h4>
-        <label>Name:</label>
-        <input type="text" class="form-control mb-2" #fileName>
 
+        <!-- Name Input -->
+        <label>Name:</label>
+        <input type="text" class="form-control mb-1" #fileName>
+        <div *ngIf="nameError" class="text-danger small mb-2">
+            Name is mandatory.
+        </div>
+
+        <!-- Description Input -->
         <label>Description:</label>
         <input type="text" class="form-control mb-2" #fileDesc>
 
-        <input type="file" class="form-control mb-3" (change)="onFileSelected($event)">
+        <!-- File Input -->
+        <input type="file" class="form-control mb-1" (change)="onFileSelected($event)">
+        <div *ngIf="fileError" class="text-danger small mb-2">
+            Please select a file.
+        </div>
 
+        <!-- Buttons -->
         <div class="text-end">
-            <button class="btn btn-success me-2" (click)="submitUpload(fileName.value, fileDesc.value)">Upload</button>
+            <button class="btn btn-success me-2" 
+                (click)="submitUpload(fileName.value, fileDesc.value)">Upload</button>
             <button class="btn btn-secondary" (click)="closeUploadForm()">Cancel</button>
         </div>
     </div>

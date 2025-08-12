@@ -7,7 +7,7 @@ interface FileData {
   description: string;
   type: string;
   date: string;
-  url: string; // object URL to open file
+  url: string;
 }
 
 @Component({
@@ -23,6 +23,13 @@ export class FileManagerComponent {
   showUploadForm = false;
   selectedType = 'All';
   selectedFile: File | null = null;
+
+  // Validation state
+  nameError = false;
+  fileError = false;
+
+  // Success message
+  successMessage = '';
 
   get totalFiles() {
     return this.files.length;
@@ -51,6 +58,9 @@ export class FileManagerComponent {
 
   openUploadForm() {
     this.showUploadForm = true;
+    this.nameError = false;
+    this.fileError = false;
+    this.successMessage = '';
   }
 
   closeUploadForm() {
@@ -58,23 +68,33 @@ export class FileManagerComponent {
     this.selectedFile = null;
   }
 
-  // Store selected file without uploading yet
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0] || null;
+    this.fileError = false;
   }
 
-  // Upload file only after clicking Upload button
   submitUpload(name: string, description: string) {
+    // Reset errors
+    this.nameError = false;
+    this.fileError = false;
+
+    if (!name || name.trim() === '') {
+      this.nameError = true;
+    }
+
     if (!this.selectedFile) {
-      alert("Please select a file first.");
+      this.fileError = true;
+    }
+
+    if (this.nameError || this.fileError) {
       return;
     }
 
-    const fileURL = URL.createObjectURL(this.selectedFile);
+    const fileURL = URL.createObjectURL(this.selectedFile!);
     const newFile: FileData = {
-      name: name || this.selectedFile.name,
+      name: name.trim(),
       description,
-      type: this.selectedFile.type || 'Unknown',
+      type: this.selectedFile!.type || 'Unknown',
       date: new Date().toISOString().split('T')[0],
       url: fileURL
     };
@@ -82,6 +102,12 @@ export class FileManagerComponent {
     this.files.push(newFile);
     this.selectedFile = null;
     this.showUploadForm = false;
+
+    // Show success message
+    this.successMessage = 'File has been successfully uploaded!';
+    setTimeout(() => {
+      this.successMessage = '';
+    }, 3000);
   }
 
   setFilter(type: string) {
