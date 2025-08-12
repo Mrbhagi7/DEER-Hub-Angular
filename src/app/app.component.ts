@@ -6,11 +6,11 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import { FileManagerComponent } from './file-manager/file-manager.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,LandingpageComponent,LoginComponent,SidebarComponent,NavbarComponent,RegisterComponent, DashboardComponent],
+  imports: [RouterOutlet,LandingpageComponent,LoginComponent,SidebarComponent,NavbarComponent,RegisterComponent, DashboardComponent,FileManagerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

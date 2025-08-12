@@ -1,0 +1,85 @@
+<div class="container mt-4">
+    <!-- Top Stats Cards -->
+    <div class="row text-white">
+        <div class="col-md-4 mb-3">
+            <div class="card bg-primary text-center p-3">
+                <h5>Total Files</h5>
+                <h3>{{ totalFiles }}</h3>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card bg-success text-center p-3">
+                <h5>Files You Own</h5>
+                <h3>{{ filesYouOwn }}</h3>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card bg-warning text-center p-3">
+                <h5>Uploaded This Month</h5>
+                <h3>{{ uploadedThisMonth }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="mb-3">
+        <button class="btn btn-outline-primary me-2" [class.active]="selectedType === 'All'"
+            (click)="setFilter('All')">All</button>
+        <!-- <button class="btn btn-outline-success me-2" [class.active]="selectedType === 'image/png'"
+            (click)="setFilter('image/png')">Images</button> -->
+        <button class="btn btn-outline-danger me-2" [class.active]="selectedType === 'application/pdf'"
+            (click)="setFilter('application/pdf')">PDFs</button>
+        <button class="btn btn-outline-secondary" [class.active]="selectedType === 'text/plain'"
+            (click)="setFilter('text/plain')">Text Files</button>
+    </div>
+
+    <!-- Header with Search + Upload -->
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="input-group w-50">
+            <input type="text" class="form-control" placeholder="Search by name or description"
+                [(ngModel)]="searchText">
+            <button class="btn btn-outline-secondary">🔍</button>
+        </div>
+        <button class="btn btn-primary" (click)="openUploadForm()">+ Upload</button>
+    </div>
+
+    <!-- Files Table -->
+    <table class="table table-striped table-hover mt-3">
+        <thead class="table-light">
+            <tr>
+                <th>S.No</th>
+                <th>Filename</th>
+                <th>Type</th>
+                <th>Date of Upload</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let file of filteredFiles; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>
+                    <a href="javascript:void(0)" (click)="openFile(file)">{{ file.name }}</a>
+                </td>
+                <td>{{ file.type }}</td>
+                <td>{{ file.date }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Upload Modal -->
+<div *ngIf="showUploadForm" class="modal-backdrop">
+    <div class="modal-box">
+        <h4>Upload File</h4>
+        <label>Name:</label>
+        <input type="text" class="form-control mb-2" #fileName>
+
+        <label>Description:</label>
+        <input type="text" class="form-control mb-2" #fileDesc>
+
+        <input type="file" class="form-control mb-3" (change)="onFileUpload($event, fileName.value, fileDesc.value)">
+        <div class="text-end">
+            <button class="btn btn-success me-2">Upload</button>
+            <button class="btn btn-secondary" (click)="closeUploadForm()">Cancel</button>
+        </div>
+    </div>
+</div>
